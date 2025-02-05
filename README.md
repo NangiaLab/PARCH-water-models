@@ -1,5 +1,7 @@
-The repository contains the results of PARCH analysis conducted on fourteen proteins using the TIP3P, TIP4P, TIP4P-Ew, and TIP5P water models. 
-The MDP files for the equilibration and annealing process are stored under **mdp_files**
+The repository contains the results of PARCH analysis conducted on fourteen proteins using the TIP3P, TIP4P, TIP4P-Ew, and TIP5P water models.
+
+The MDP files for the equilibration and annealing process are stored under **mdp_files**.
+
 The **subfolders named after the respective proteins** contain the following files in each of them:
 - four PDB files of the protein tested with different water models, with PARCH values written as B-factors. 
 - a CSV file summarizing the PARCH results across different water models.
