@@ -1,0 +1,71 @@
+; run parameters
+integrator              = md
+dt                      = 0.002   ; 2 fs
+nsteps                  = 50000000  ; 100 ns
+
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = Solv PP
+
+; output
+nstxout                 = 0  ; .trr
+nstvout                 = 0
+nstfout                 = 0
+
+nstenergy               = 5000
+nstlog                  = 5000
+nstcalcenergy           = 100
+
+nstxout-compressed       = 50000   ; frequency writing to the trajectory
+compressed-x-precision   = 1000
+compressed-x-grps        = System
+
+energygrps               = Solv PP
+
+; Bond parameters
+continuation            = yes
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+lincs_iter              = 1         ; accuracy of LINCS
+lincs_order             = 4         ; also related to accuracy
+
+; nonbonded settings
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+
+; Electrostatistics 
+coulombtype             = pme
+rcoulomb                = 1.2
+;pme_order               = 4         ; cubic interpolation
+;fourierspacing          = 0.16
+
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+
+; Temperature coupling
+tcoupl                  = V-rescale
+tc_grps                 = Solv PP
+tau_t                   = 1.0 1.0
+ref_t                   = 300 300       
+
+; Pressure coupling
+Pcoupl                   = Parrinello-Rahman
+Pcoupltype               = isotropic
+tau_p                    = 5.0
+compressibility          = 4.5e-5
+ref_p                    = 1.0
+
+refcoord_scaling        = all
+
+; Periodic boundary conditions
+pbc                     = xyz       
+
+; Dispersion correction
+DispCorr                = EnerPres  ; account for cut-off vdW scheme
+
+; Velocity generation
+gen-vel                 = no
+
